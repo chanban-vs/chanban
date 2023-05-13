@@ -1,0 +1,8 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        show_sql: true
+        format_sql: true
+        generate_statistics: true
