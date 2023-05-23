@@ -46,5 +46,5 @@ tasks.withType<Test> {
 
 tasks.jar{
     enabled = false
-    duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
