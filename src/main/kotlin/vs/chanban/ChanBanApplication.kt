@@ -5,7 +5,7 @@ import org.springframework.boot.runApplication
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 
 @SpringBootApplication
-@EnableJpaAuditin
+@EnableJpaAuditing
 class ChanBanApplication
 
 fun main(args: Array<String>) {
