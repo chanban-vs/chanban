@@ -1,5 +1,9 @@
 spring:
   jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         globally_quoted_identifiers: true
