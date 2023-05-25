@@ -1,8 +1,15 @@
 spring:
   jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
-        globally_quoted_identifiers: true
         show_sql: true
         format_sql: true
-        generate_statistics: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
