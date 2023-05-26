@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 import vs.chanban.common.exception.ChanbanBizException
 
 @RestController
-class HelloController() {
+class HelloController {
     @GetMapping("/hello")
     fun hello(): String {
         return "Hello"
