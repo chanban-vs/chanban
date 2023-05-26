@@ -8,7 +8,7 @@ plugins {
     kotlin("plugin.jpa") version "1.7.22"
 }
 
-group = "com.example"
+group = "vs.chanban"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -18,11 +18,11 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-mustache")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.mysql:mysql-connector-j")
+    implementation("com.mysql:mysql-connector-j:8.0.32")
+    implementation("com.google.guava:guava:31.1-jre")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
