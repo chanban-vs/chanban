@@ -14,6 +14,6 @@ class HelloController {
 
     @GetMapping("/error-test")
     fun errorTest(): String {
-        throw ChanbanBizException(HttpStatus.BAD_REQUEST ,"error-test")
+        throw ChanbanBizException(HttpStatus.BAD_REQUEST ,"Error test")
     }
 }
