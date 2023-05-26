@@ -7,7 +7,6 @@ import vs.chanban.common.exception.ChanbanBizException
 
 @RestController
 class HelloController() {
-
     @GetMapping("/hello")
     fun hello(): String {
         return "Hello"
@@ -15,6 +14,6 @@ class HelloController() {
 
     @GetMapping("/error-test")
     fun errorTest(): String {
-        throw ChanbanBizException(HttpStatus.INTERNAL_SERVER_ERROR ,"error-test")
+        throw ChanbanBizException(HttpStatus.BAD_REQUEST ,"error-test")
     }
 }
