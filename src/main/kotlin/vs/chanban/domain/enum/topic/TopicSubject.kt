@@ -8,6 +8,7 @@ enum class TopicSubject(private val description: String): ChanbanEnum {
     ENTERTAINMENTS("연예"),
     SPORTS("스포츠"),
     POLITICS("정치"),
+    RELATIONSHIPS("인간관계"),
     GIBBERISH("횡설수설");
 
     override fun getName(): String {
