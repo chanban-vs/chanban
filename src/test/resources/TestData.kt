@@ -1,4 +1,4 @@
-import TestData.Topic.TEST_TOPIC
+import TestData.Topic.SAVED_TEST_TOPIC
 import vs.chanban.domain.comment.Comment
 import vs.chanban.domain.enum.poll.PollOption
 import vs.chanban.domain.enum.topic.TopicSubject
@@ -14,12 +14,21 @@ class TestData {
             topicContent = "test content",
             userIp = "test ip"
         )
+
+        @JvmField
+        val SAVED_TEST_TOPIC = Topic(
+            topicId = 1L,
+            topicTitle = "test title",
+            topicSubject = TopicSubject.SPORTS,
+            topicContent = "test content",
+            userIp = "test ip"
+        )
     }
 
     object Poll {
         @JvmField
         val TEST_POLL = Poll(
-            topicId = TEST_TOPIC,
+            topicId = SAVED_TEST_TOPIC,
             pollAnswer = PollOption.POSITIVE,
             userIp = "test_ip"
         )
@@ -32,5 +41,9 @@ class TestData {
             commentContent = "test content",
             userIp = "test ip"
         )
+    }
+
+    object IpAddress {
+        const val TEST_IP_ADDRESS = "127.0.0.1"
     }
 }
