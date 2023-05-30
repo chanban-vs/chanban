@@ -3,6 +3,7 @@ package vs.chanban.domain.topic
 import jakarta.persistence.*
 import vs.chanban.domain.enum.topic.TopicSubject
 import vs.chanban.domain.listener.BaseTimeListener
+import vs.chanban.domain.topic.dto.AddTopicRequestDto
 
 @Entity
 @Table(name = "topic")
@@ -24,4 +25,13 @@ class Topic(
 
     @Column(name = "user_ip", length = 20, nullable = false)
     val userIp: String
-): BaseTimeListener()
+): BaseTimeListener() {
+    companion object {
+        fun of(addTopicRequestDto: AddTopicRequestDto): Topic = Topic(
+            topicTitle = addTopicRequestDto.topicTitle,
+            topicSubject = TopicSubject.of(addTopicRequestDto.topicSubject),
+            topicContent = addTopicRequestDto.topicContent,
+            userIp = addTopicRequestDto.userIp
+        )
+    }
+}
