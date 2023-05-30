@@ -1,6 +1,6 @@
 package vs.chanban.domain.comment
 
-import TestData.Comment.TEST_COMMENT
+import vs.chanban.testdata.TestData.Comment.TEST_COMMENT
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test

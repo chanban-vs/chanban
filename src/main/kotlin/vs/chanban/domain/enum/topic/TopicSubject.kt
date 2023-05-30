@@ -1,5 +1,8 @@
 package vs.chanban.domain.enum.topic
 
+import org.springframework.http.HttpStatus
+import vs.chanban.common.Message.Validation.INVALID_ENUM_VALUE
+import vs.chanban.common.exception.ChanbanBizException
 import vs.chanban.domain.enum.ChanbanEnum
 
 enum class TopicSubject(private val description: String): ChanbanEnum {
@@ -16,5 +19,16 @@ enum class TopicSubject(private val description: String): ChanbanEnum {
     }
     override fun getDescription(): String {
         return description
+    }
+
+    companion object {
+        fun of(name: String): TopicSubject {
+            try {
+                return TopicSubject.valueOf(name)
+            } catch(ex: IllegalArgumentException) {
+                val enumName = "topicSubject"
+                throw ChanbanBizException(HttpStatus.BAD_REQUEST, INVALID_ENUM_VALUE.format(enumName, name))
+            }
+        }
     }
 }

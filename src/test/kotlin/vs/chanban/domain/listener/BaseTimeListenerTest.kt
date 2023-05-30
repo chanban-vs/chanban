@@ -1,6 +1,6 @@
 package vs.chanban.domain.listener
 
-import TestData.Topic.TEST_TOPIC
+import vs.chanban.testdata.TestData.Topic.NEW_TOPIC
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -15,7 +15,7 @@ class BaseTimeListenerTest(@Autowired val topicRepository: TopicRepository) {
     @DisplayName("save created at")
     fun saveCreatedAt() {
         val dateBeforeSave = LocalDateTime.now()
-        val savedCreatedAt = topicRepository.save(TEST_TOPIC).createdAt
+        val savedCreatedAt = topicRepository.save(NEW_TOPIC).createdAt
         val dateAfterSave = LocalDateTime.now()
 
         Assertions.assertTrue(savedCreatedAt!! > dateBeforeSave)
