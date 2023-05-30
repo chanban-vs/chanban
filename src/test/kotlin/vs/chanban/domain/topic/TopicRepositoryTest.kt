@@ -1,6 +1,6 @@
 package vs.chanban.domain.topic
 
-import TestData.Topic.TEST_TOPIC
+import vs.chanban.testdata.TestData.Topic.NEW_TOPIC
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
@@ -13,11 +13,11 @@ class TopicRepositoryTest(@Autowired val topicRepository: TopicRepository) {
     @Test
     @DisplayName("save topic")
     fun saveTopic() {
-        val savedTopic = topicRepository.save(TEST_TOPIC)
+        val savedTopic = topicRepository.save(NEW_TOPIC)
 
-        Assertions.assertEquals(TEST_TOPIC.topicTitle, savedTopic.topicTitle)
-        Assertions.assertEquals(TEST_TOPIC.topicSubject, savedTopic.topicSubject)
-        Assertions.assertEquals(TEST_TOPIC.topicContent, savedTopic.topicContent)
-        Assertions.assertEquals(TEST_TOPIC.userIp, savedTopic.userIp)
+        Assertions.assertEquals(NEW_TOPIC.topicTitle, savedTopic.topicTitle)
+        Assertions.assertEquals(NEW_TOPIC.topicSubject, savedTopic.topicSubject)
+        Assertions.assertEquals(NEW_TOPIC.topicContent, savedTopic.topicContent)
+        Assertions.assertEquals(NEW_TOPIC.userIp, savedTopic.userIp)
     }
 }

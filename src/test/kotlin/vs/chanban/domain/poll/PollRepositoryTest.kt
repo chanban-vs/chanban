@@ -1,6 +1,6 @@
 package vs.chanban.domain.poll
 
-import TestData.Poll.TEST_POLL
+import vs.chanban.testdata.TestData.Poll.TEST_POLL
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
