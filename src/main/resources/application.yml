@@ -14,3 +14,12 @@ spring:
     url: ${DATASOURCE_URL}
     username: ${DATASOURCE_USERNAME}
     password: ${DATASOURCE_PASSWORD}
+mail-sender:
+  host: smtp.gmail.com
+  port: 587
+  username: ${MAIL_SENDER_USERNAME}
+  password: ${MAIL_SENDER_PASSWORD}
+  protocol: smtp
+  auth: true
+  starttls-enable: true
+  debug: true
