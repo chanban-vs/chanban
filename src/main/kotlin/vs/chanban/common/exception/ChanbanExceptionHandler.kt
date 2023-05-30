@@ -5,6 +5,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.BindException
+import org.springframework.validation.FieldError
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 
@@ -31,6 +33,19 @@ class ChanbanExceptionHandler {
         logger.error("[{}] {}", httpStatus.reasonPhrase, stackTrace)
         return ResponseEntity(
             ChanbanErrorResponse(httpStatus.value(), ex.message.toString()),
+            httpStatus
+        )
+    }
+    @ExceptionHandler(BindException::class)
+    fun handleValidationException(ex: BindException): ResponseEntity<Any> {
+        val httpStatus = HttpStatus.BAD_REQUEST
+        val errorMessages = ex.fieldErrors.map { fieldError: FieldError ->
+            "${fieldError.field} ${fieldError.defaultMessage}"
+        }
+        val errorMessage = errorMessages.joinToString(", ")
+
+        return ResponseEntity(
+            ChanbanErrorResponse(httpStatus.value(), errorMessage),
             httpStatus
         )
     }
