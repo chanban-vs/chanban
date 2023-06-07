@@ -2,10 +2,12 @@ package vs.chanban.testdata
 
 import vs.chanban.testdata.TestData.Topic.SPORTS_TOPIC
 import vs.chanban.domain.comment.Comment
+import vs.chanban.domain.enum.account.role.AccountRole
 import vs.chanban.domain.enum.poll.PollOption
 import vs.chanban.domain.enum.topic.TopicSubject
 import vs.chanban.domain.poll.Poll
 import vs.chanban.domain.topic.Topic
+import vs.chanban.domain.user.User
 
 class TestData {
     object Topic {
@@ -50,10 +52,26 @@ class TestData {
         val TEST_COMMENT = Comment(
             parentCommentId = null,
             commentContent = "test content",
+            pollAnswer = PollOption.POSITIVE,
             userIp = "127.0.0.1"
         )
     }
 
+    object User {
+        val NEW_USER = User(
+            userEmail = "test@email",
+            userPassword = "test password",
+            userRoles = mutableSetOf(AccountRole.USER)
+        )
+
+        val TEST_USER = User(
+            userId = 1L,
+            userEmail = "test@email",
+            userPassword = "test password",
+            userRoles = mutableSetOf(AccountRole.USER)
+
+        )
+    }
     object IpAddress {
         const val TEST_IP_ADDRESS = "127.0.0.1"
     }

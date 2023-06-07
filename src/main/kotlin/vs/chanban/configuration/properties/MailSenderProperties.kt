@@ -2,7 +2,7 @@ package vs.chanban.configuration.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "mail-sender")
+@ConfigurationProperties(prefix = "spring.mail")
 class MailSenderProperties(
     val host: String,
     val port: Int,

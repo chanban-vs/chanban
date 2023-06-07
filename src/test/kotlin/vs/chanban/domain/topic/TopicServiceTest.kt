@@ -65,19 +65,15 @@ class TopicServiceTest {
     @Test
     @DisplayName("get topics as page by topic subject")
     fun testGetTopicsByTopicSubject() {
-        // Mocked data
         val page = 0
         val pageSize = 10
         val topics = listOf(SPORTS_TOPIC, ANOTHER_SPORTS_TOPIC)
         val pageable: Pageable = PageRequest.of(page, pageSize)
         val topicPage: Page<Topic> = PageImpl(topics, pageable, topics.size.toLong())
 
-        // Mocking the repository
         `when`(topicRepository.findAllByTopicSubject(SPORTS_TOPIC.topicSubject, pageable)).thenReturn(topicPage)
 
-        // Invoke the service method
         val result: Page<TopicPreviewResponseDto> = topicService.getTopicsByTopicSubject(SPORTS_TOPIC.topicSubject, page, pageSize)
-
 
         Assertions.assertEquals(topicPage.totalElements, result.totalElements)
         Assertions.assertEquals(topicPage.content.size, result.content.size)
