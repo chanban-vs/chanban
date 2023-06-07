@@ -15,8 +15,8 @@ spring:
     username: ${DATASOURCE_USERNAME}
     password: ${DATASOURCE_PASSWORD}
   redis:
-    host: 127.0.0.1
-    port: 6739
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
   mail:
     host: smtp.gmail.com
     port: 587
