@@ -1,8 +1,8 @@
 package vs.chanban.domain.bookmark
 
 import jakarta.persistence.*
-import org.apache.catalina.User
 import vs.chanban.domain.topic.Topic
+import vs.chanban.domain.user.User
 
 @Entity
 @Table(name = "bookmark")
