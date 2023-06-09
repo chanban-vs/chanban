@@ -19,7 +19,7 @@ class UserService(
 
     @Transactional(readOnly = true)
     fun getUserById(userId: Long): User {
-        return userRepository.findById(userId).orElseThrow{
+        return userRepository.findById(userId).orElseThrow {
             ChanbanBizException(HttpStatus.BAD_REQUEST, USER_NOT_FOUND.format(ID, userId))
         }
     }
