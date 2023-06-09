@@ -4,9 +4,16 @@ import jakarta.persistence.*
 import vs.chanban.domain.enum.topic.TopicSubject
 import vs.chanban.domain.listener.BaseTimeListener
 import vs.chanban.domain.topic.dto.AddTopicRequestDto
+import vs.chanban.domain.user.User
 
 @Entity
-@Table(name = "topic")
+@Table(name = "topic",
+    indexes = [
+        Index(columnList = "created_at", name = "user_idx_1"),
+        Index(columnList = "updated_at", name = "user_idx_2"),
+        Index(columnList = "created_by", name = "user_idx_3")
+    ]
+)
 class Topic(
     @Id
     @Column(name = "topic_id", nullable = false)
@@ -23,15 +30,16 @@ class Topic(
     @Column(name = "topic_content")
     val topicContent: String = "",
 
-    @Column(name = "user_ip", length = 20, nullable = false)
-    val userIp: String
+    @ManyToOne
+    @JoinColumn(name = "created_by", nullable = false)
+    val createdBy: User
 ): BaseTimeListener() {
     companion object {
         fun of(addTopicRequestDto: AddTopicRequestDto): Topic = Topic(
             topicTitle = addTopicRequestDto.topicTitle,
             topicSubject = TopicSubject.of(addTopicRequestDto.topicSubject),
             topicContent = addTopicRequestDto.topicContent,
-            userIp = addTopicRequestDto.userIp
+            createdBy = addTopicRequestDto.createdBy!!
         )
     }
 }
