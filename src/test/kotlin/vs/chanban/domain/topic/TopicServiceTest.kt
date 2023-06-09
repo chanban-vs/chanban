@@ -43,7 +43,7 @@ class TopicServiceTest {
     fun getExistingTopicById() {
         `when`(topicRepository.findById(SPORTS_TOPIC.topicId!!)).thenReturn(Optional.of(SPORTS_TOPIC))
 
-        val topic: Topic = topicService.getTopicById(SPORTS_TOPIC.topicId!!)
+        val topic: Topic = topicService.getTopicByTopicId(SPORTS_TOPIC.topicId!!)
 
         Assertions.assertEquals(topic, SPORTS_TOPIC)
     }
@@ -55,7 +55,7 @@ class TopicServiceTest {
         `when`(topicRepository.findById(testTopicId)).thenReturn(Optional.empty())
 
         val exception = Assertions.assertThrows(ChanbanBizException::class.java) {
-            topicService.getTopicById(testTopicId)
+            topicService.getTopicByTopicId(testTopicId)
         }
 
         Assertions.assertEquals(HttpStatus.NOT_FOUND, exception.httpStatus)
