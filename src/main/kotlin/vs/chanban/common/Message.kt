@@ -20,6 +20,7 @@ class Message {
     }
     object Authentication {
         const val UNAUTHORIZED = "Unauthorized"
+        const val INVALID_TOKEN = "Invalid token"
     }
 
     object Mail {
