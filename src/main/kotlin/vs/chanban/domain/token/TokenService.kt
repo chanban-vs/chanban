@@ -44,6 +44,7 @@ class TokenService(
         }
     }
 
+    // get User from jwt
     fun getUserFromToken(httpServletRequest: HttpServletRequest): User {
         val jwt: String
         val bearerToken = httpServletRequest.getHeader(AUTHORIZATION)
