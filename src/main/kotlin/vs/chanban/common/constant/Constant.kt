@@ -21,5 +21,7 @@ class Constant {
         const val ISSUER: String = "Chanban"
         // Milliseconds, 2 hours
         const val EXPIRES_AFTER: Long = 7200000
+        const val AUTHORIZATION: String = "Authorization"
+        const val TOKEN_PREFIX: String = "Bearer "
     }
 }

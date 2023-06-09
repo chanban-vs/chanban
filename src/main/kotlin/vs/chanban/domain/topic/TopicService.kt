@@ -10,7 +10,6 @@ import vs.chanban.common.exception.ChanbanBizException
 import vs.chanban.configuration.PaginationConfig
 import vs.chanban.domain.enum.dto.ChanbanEnumDto
 import vs.chanban.domain.enum.topic.TopicSubject
-import vs.chanban.domain.topic.dto.AddTopicRequestDto
 import vs.chanban.domain.topic.dto.TopicPreviewResponseDto
 
 @Service
@@ -19,13 +18,13 @@ class TopicService(
         private val topicRepository: TopicRepository,
         private val paginationConfig: PaginationConfig
 ) {
-    fun addTopic(addTopicRequestDto: AddTopicRequestDto): Topic {
-        return topicRepository.save(Topic.of(addTopicRequestDto))
+    fun addTopic(topic: Topic): Topic {
+        return topicRepository.save(topic)
     }
 
     // Get topic by topic id
     @Transactional(readOnly = true)
-    fun getTopicById(topicId: Long): Topic {
+    fun getTopicByTopicId(topicId: Long): Topic {
         return topicRepository.findById(topicId).orElseThrow {
                 ChanbanBizException(HttpStatus.NOT_FOUND, TOPIC_NOT_FOUND.format(topicId))
             }
@@ -51,5 +50,4 @@ class TopicService(
 
         return topicDtoPage
     }
-
 }

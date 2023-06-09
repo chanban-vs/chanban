@@ -16,11 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.oauth2.server.resource.authentication.BearerTokenAuthenticationToken
 import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.SecurityFilterChain
-import org.springframework.web.ErrorResponse
 import vs.chanban.domain.token.TokenService
-import org.springframework.web.cors.CorsConfiguration
-import org.springframework.web.cors.CorsConfigurationSource
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import vs.chanban.common.Message.Authentication.UNAUTHORIZED
 import vs.chanban.common.error.ChanbanErrorResponse
 import vs.chanban.domain.enum.account.role.AccountRole
@@ -50,22 +46,17 @@ class SecurityConfig (
 
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
-        // Define public and private routes
         http.authorizeHttpRequests()
-            .requestMatchers(HttpMethod.GET, "/user/**").permitAll()
-            .requestMatchers(HttpMethod.POST, "/user/**").permitAll()
+            .requestMatchers("/user/**").permitAll()
             .requestMatchers("/**").authenticated()
-            .anyRequest().permitAll()
 
-        // Configure JWT
         http.oauth2ResourceServer().jwt()
         http.authenticationManager { auth ->
             val jwt = auth as BearerTokenAuthenticationToken
-            val user = tokenService.parseToken(jwt.token)/** ?: throw ChanbanBizException(HttpStatus.UNAUTHORIZED, UNAUTHORIZED) **/
+            val user = tokenService.parseToken(jwt.token)
             UsernamePasswordAuthenticationToken(user, "", listOf(SimpleGrantedAuthority(AccountRole.USER.name)))
         }
 
-        // Other configuration
         http.cors()
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         http.csrf().disable()
@@ -74,17 +65,5 @@ class SecurityConfig (
 
         http.exceptionHandling().authenticationEntryPoint(unauthorizedEntryPoint)
         return http.build()
-    }
-
-    @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource {
-        // allow localhost for dev purposes
-        val configuration = CorsConfiguration()
-        configuration.allowedOrigins = listOf("http://localhost:3000", "http://localhost:8080")
-        configuration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE")
-        configuration.allowedHeaders = listOf("authorization", "content-type")
-        val source = UrlBasedCorsConfigurationSource()
-        source.registerCorsConfiguration("/**", configuration)
-        return source
     }
 }
