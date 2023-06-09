@@ -8,6 +8,7 @@ import vs.chanban.domain.enum.topic.TopicSubject
 import vs.chanban.domain.poll.Poll
 import vs.chanban.domain.topic.Topic
 import vs.chanban.domain.user.User
+import vs.chanban.testdata.TestData.User.TEST_USER
 
 class TestData {
     object Topic {
@@ -16,7 +17,7 @@ class TestData {
             topicTitle = "test title",
             topicSubject = TopicSubject.SPORTS,
             topicContent = "test content",
-            userIp = "127.0.0.1"
+            createdBy = TEST_USER
         )
 
         @JvmField
@@ -25,7 +26,7 @@ class TestData {
             topicTitle = "test title",
             topicSubject = TopicSubject.SPORTS,
             topicContent = "test content",
-            userIp = "127.0.0.1"
+            createdBy = TEST_USER
         )
 
         @JvmField
@@ -34,7 +35,7 @@ class TestData {
                 topicTitle = "test title",
                 topicSubject = TopicSubject.SPORTS,
                 topicContent = "test content",
-                userIp = "127.0.0.1"
+                createdBy = TEST_USER
         )
     }
 
@@ -43,7 +44,7 @@ class TestData {
         val TEST_POLL = Poll(
             topicId = SPORTS_TOPIC,
             pollAnswer = PollOption.POSITIVE,
-            userIp = "127.0.0.1"
+            createdBy = TEST_USER
         )
     }
 
@@ -53,7 +54,8 @@ class TestData {
             parentCommentId = null,
             commentContent = "test content",
             pollAnswer = PollOption.POSITIVE,
-            userIp = "127.0.0.1"
+            topicId = SPORTS_TOPIC,
+            createdBy = TEST_USER
         )
     }
 
