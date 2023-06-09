@@ -6,7 +6,13 @@ import vs.chanban.domain.listener.BaseTimeListener
 import vs.chanban.domain.user.email.verification.TemporaryUser
 
 @Entity
-@Table(name = "user")
+@Table(name = "user",
+    indexes = [
+        Index(columnList = "created_at", name = "user_idx_1"),
+        Index(columnList = "updated_at", name = "user_idx_2"),
+        Index(columnList = "user_email", name = "user_idx_3")
+    ]
+)
 class User(
     @Id
     @Column(name = "user_id", nullable = false)
