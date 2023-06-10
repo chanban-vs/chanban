@@ -5,5 +5,5 @@ import vs.chanban.common.Message
 
 class CheckEmailExistenceRequestDto(
     @field:NotBlank(message = Message.Validation.CANNOT_BE_BLANK)
-    val email: String
+    val email: String? = null
 )

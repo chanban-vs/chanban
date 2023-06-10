@@ -34,7 +34,7 @@ class UserCombineService(
     private val temporaryUserService: TemporaryUserService
 ) {
     fun login(loginRequestDto: LoginRequestDto): TokenResponseDto {
-        val user = userService.getUserByUserEmail(loginRequestDto.email)
+        val user = userService.getUserByUserEmail(loginRequestDto.email!!)
 
         if (passwordEncoder.matches(loginRequestDto.password, user.userPassword)) {
             val token = tokenService.generateToken(user)
@@ -47,10 +47,10 @@ class UserCombineService(
     // Add user & send email verification code
     @Transactional
     fun addTemporaryUser(addTemporaryUserRequestDto: AddTemporaryUserRequestDto) {
-        if (addTemporaryUserRequestDto.password.length < MINIMUM_PASSWORD_LENGTH) {
+        if (addTemporaryUserRequestDto.password!!.length < MINIMUM_PASSWORD_LENGTH) {
             throw ChanbanBizException(HttpStatus.BAD_REQUEST, INVALID_PASSWORD_BY_LENGTH.format(MINIMUM_PASSWORD_LENGTH))
         }
-        if (existsByEmail(addTemporaryUserRequestDto.email)) {
+        if (existsByEmail(addTemporaryUserRequestDto.email!!)) {
             throw ChanbanBizException(HttpStatus.BAD_REQUEST, DUPLICATED_EMAIL.format(addTemporaryUserRequestDto.email))
         }
 
@@ -68,7 +68,7 @@ class UserCombineService(
 
     @Transactional
     fun verifyCode(verifyEmailRequestDto: VerifyEmailRequestDto): TokenResponseDto {
-        val temporaryUser = temporaryUserService.getTemporaryUser(verifyEmailRequestDto.email)
+        val temporaryUser = temporaryUserService.getTemporaryUser(verifyEmailRequestDto.email!!)
 
         if (temporaryUser.verificationCode != verifyEmailRequestDto.verificationCode) {
             throw ChanbanBizException(HttpStatus.BAD_REQUEST, WRONG_VERIFICATION_CODE)
@@ -83,7 +83,7 @@ class UserCombineService(
     }
 
     fun checkEmailExistence(checkEmailExistenceRequestDto: CheckEmailExistenceRequestDto): CheckEmailExistenceResponseDto {
-        return CheckEmailExistenceResponseDto.of(existsByEmail(checkEmailExistenceRequestDto.email))
+        return CheckEmailExistenceResponseDto.of(existsByEmail(checkEmailExistenceRequestDto.email!!))
     }
 
     // Return false when email doesn't exist both db and redis
