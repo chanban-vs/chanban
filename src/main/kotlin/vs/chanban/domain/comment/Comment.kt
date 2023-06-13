@@ -1,6 +1,7 @@
 package vs.chanban.domain.comment
 
 import jakarta.persistence.*
+import vs.chanban.domain.comment.dto.AddCommentRequestDto
 import vs.chanban.domain.enum.poll.PollOption
 import vs.chanban.domain.listener.BaseTimeListener
 import vs.chanban.domain.topic.Topic
@@ -39,4 +40,14 @@ class Comment(
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
     val createdBy: User
-): BaseTimeListener()
+): BaseTimeListener() {
+    companion object {
+        fun of(addCommentRequestDto: AddCommentRequestDto): Comment = Comment(
+            topicId = addCommentRequestDto.topic!!,
+            parentCommentId = addCommentRequestDto.parentComment,
+            pollAnswer = PollOption.of(addCommentRequestDto.pollAnswer!!),
+            commentContent = addCommentRequestDto.comment!!,
+            createdBy = addCommentRequestDto.createdBy!!
+        )
+    }
+}
