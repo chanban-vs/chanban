@@ -3,6 +3,7 @@ package vs.chanban.common
 class Message {
     object Validation {
         const val CANNOT_BE_BLANK = "cannot be blank"
+        const val CANNOT_BE_NULL = "cannot be null"
         const val INVALID_ENUM_VALUE = "Invalid %s: %s"
     }
 
@@ -18,9 +19,15 @@ class Message {
         const val DUPLICATED_EMAIL = "Duplicated email %s"
         const val INVALID_PASSWORD_BY_LENGTH = "Password should be at least %d characters long"
     }
+
+    object Poll {
+        const val POLL_NOT_FOUND = "Poll not found"
+    }
     object Authentication {
         const val UNAUTHORIZED = "Unauthorized"
         const val INVALID_TOKEN = "Invalid token"
+        const val EMPTY_TOKEN = "Token is empty"
+        const val FORBIDDEN = "Forbidden"
     }
 
     object Mail {
