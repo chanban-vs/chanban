@@ -29,7 +29,7 @@ class Poll(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "poll_answer", length = 20, nullable = false)
-    val pollAnswer: PollOption,
+    var pollAnswer: PollOption,
 
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
