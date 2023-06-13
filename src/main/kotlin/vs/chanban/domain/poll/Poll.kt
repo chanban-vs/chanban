@@ -3,6 +3,7 @@ package vs.chanban.domain.poll
 import jakarta.persistence.*
 import vs.chanban.domain.enum.poll.PollOption
 import vs.chanban.domain.listener.BaseTimeListener
+import vs.chanban.domain.poll.dto.AddPollRequestDto
 import vs.chanban.domain.topic.Topic
 import vs.chanban.domain.user.User
 
@@ -28,9 +29,17 @@ class Poll(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "poll_answer", length = 20, nullable = false)
-    val pollAnswer: PollOption,
+    var pollAnswer: PollOption,
 
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
     val createdBy: User
-): BaseTimeListener()
+): BaseTimeListener() {
+    companion object {
+        fun of(addPollRequestDto: AddPollRequestDto): Poll = Poll(
+            topicId = addPollRequestDto.topic!!,
+            pollAnswer = PollOption.of(addPollRequestDto.pollAnswer!!),
+            createdBy = addPollRequestDto.createdBy!!
+        )
+    }
+}

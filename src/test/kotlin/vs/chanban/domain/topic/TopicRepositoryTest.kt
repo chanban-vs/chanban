@@ -18,6 +18,5 @@ class TopicRepositoryTest(@Autowired val topicRepository: TopicRepository) {
         Assertions.assertEquals(NEW_TOPIC.topicTitle, savedTopic.topicTitle)
         Assertions.assertEquals(NEW_TOPIC.topicSubject, savedTopic.topicSubject)
         Assertions.assertEquals(NEW_TOPIC.topicContent, savedTopic.topicContent)
-        Assertions.assertEquals(NEW_TOPIC.userIp, savedTopic.userIp)
     }
 }

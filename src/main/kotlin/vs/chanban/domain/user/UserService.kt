@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import vs.chanban.common.Message.User.USER_NOT_FOUND
-import vs.chanban.common.constant.Constant.User.EMAIL
-import vs.chanban.common.constant.Constant.User.ID
+import vs.chanban.common.constant.Constant.Common.EMAIL
+import vs.chanban.common.constant.Constant.Common.ID
 import vs.chanban.common.exception.ChanbanBizException
 
 @Service

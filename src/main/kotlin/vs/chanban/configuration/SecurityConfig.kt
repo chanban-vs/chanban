@@ -48,6 +48,8 @@ class SecurityConfig (
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.authorizeHttpRequests()
             .requestMatchers("/user/**").permitAll()
+            .requestMatchers("/topic/**", "/topic/subject/**").permitAll()
+            .requestMatchers("/poll/total/**").permitAll()
             .requestMatchers("/**").authenticated()
 
         http.oauth2ResourceServer().jwt()

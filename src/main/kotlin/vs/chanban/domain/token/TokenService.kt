@@ -5,13 +5,14 @@ import org.springframework.http.HttpStatus
 import org.springframework.security.oauth2.jwt.*
 import org.springframework.stereotype.Service
 import org.springframework.util.StringUtils
+import vs.chanban.common.Message.Authentication.EMPTY_TOKEN
 import vs.chanban.common.Message.Authentication.INVALID_TOKEN
 import vs.chanban.common.constant.Constant.Authentication.AUTHORIZATION
 import vs.chanban.common.constant.Constant.Authentication.EXPIRES_AFTER
 import vs.chanban.common.constant.Constant.Authentication.HS256_ALGORITHM
 import vs.chanban.common.constant.Constant.Authentication.ISSUER
 import vs.chanban.common.constant.Constant.Authentication.TOKEN_PREFIX
-import vs.chanban.common.constant.Constant.User.USER_ID
+import vs.chanban.common.constant.Constant.Common.USER_ID
 import vs.chanban.common.exception.ChanbanBizException
 import vs.chanban.domain.user.User
 import vs.chanban.domain.user.UserService
@@ -44,14 +45,19 @@ class TokenService(
         }
     }
 
+    // get User from jwt
     fun getUserFromToken(httpServletRequest: HttpServletRequest): User {
         val jwt: String
         val bearerToken = httpServletRequest.getHeader(AUTHORIZATION)
 
+        if (bearerToken.isNullOrEmpty()) {
+            throw ChanbanBizException(HttpStatus.UNAUTHORIZED, EMPTY_TOKEN)
+        }
+
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)) {
             jwt = bearerToken.substring(TOKEN_PREFIX.length)
         } else {
-            throw ChanbanBizException(HttpStatus.BAD_REQUEST, INVALID_TOKEN)
+            throw ChanbanBizException(HttpStatus.UNAUTHORIZED, INVALID_TOKEN)
         }
 
         return parseToken(jwt)

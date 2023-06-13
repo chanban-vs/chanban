@@ -4,6 +4,7 @@ import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners
 import jakarta.persistence.MappedSuperclass
 import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 
@@ -14,7 +15,7 @@ abstract class BaseTimeListener {
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: LocalDateTime? = null
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     val updatedAt: LocalDateTime? = null
 }

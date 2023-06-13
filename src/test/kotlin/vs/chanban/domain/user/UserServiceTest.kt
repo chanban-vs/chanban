@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 import vs.chanban.common.Message.User.USER_NOT_FOUND
-import vs.chanban.common.constant.Constant.User.EMAIL
+import vs.chanban.common.constant.Constant.Common.EMAIL
 import vs.chanban.common.exception.ChanbanBizException
 import vs.chanban.testdata.TestData.User.TEST_USER
 import java.util.*

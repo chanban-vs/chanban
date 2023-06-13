@@ -13,7 +13,6 @@ import vs.chanban.domain.topic.dto.AddTopicRequestDto
 import vs.chanban.domain.topic.dto.AddTopicResponseDto
 import vs.chanban.domain.topic.dto.TopicPreviewResponseDto
 import vs.chanban.domain.topic.dto.TopicResponseDto
-import vs.chanban.domain.user.User
 
 @RestController
 @RequestMapping("/topic")
@@ -33,12 +32,8 @@ class TopicController(
     }
 
     @GetMapping("/{topicId}")
-    fun getTopic(
-        @PathVariable topicId: Long,
-        httpServletRequest: HttpServletRequest
-    ): ResponseEntity<TopicResponseDto> {
-        val user: User = tokenService.getUserFromToken(httpServletRequest)
-        return ResponseEntity.ok(topicCombineService.getTopic(topicId, user))
+    fun getTopic(@PathVariable topicId: Long): ResponseEntity<TopicResponseDto> {
+        return ResponseEntity.ok(topicCombineService.getTopic(topicId))
     }
 
     @GetMapping("/subject/{topicSubject}")
@@ -46,7 +41,7 @@ class TopicController(
         @PathVariable topicSubject: String,
         @RequestParam("page") page: Int?,
         @RequestParam("pageSize") pageSize: Int?
-    ): Page<TopicPreviewResponseDto> {
-        return topicService.getTopicsByTopicSubject(TopicSubject.of(topicSubject), page, pageSize)
+    ): ResponseEntity<Page<TopicPreviewResponseDto>> {
+        return ResponseEntity.ok(topicCombineService.getTopicPage(TopicSubject.of(topicSubject), page, pageSize))
     }
 }

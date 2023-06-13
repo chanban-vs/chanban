@@ -5,7 +5,7 @@ import vs.chanban.common.Message
 
 class VerifyEmailRequestDto(
     @field:NotBlank(message = Message.Validation.CANNOT_BE_BLANK)
-    val email: String,
+    val email: String? = null,
     @field:NotBlank(message = Message.Validation.CANNOT_BE_BLANK)
-    val verificationCode: String
+    val verificationCode: String? = null
 )

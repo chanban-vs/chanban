@@ -1,14 +1,14 @@
 package vs.chanban.common.constant
 
 class Constant {
-    object User {
-        const val MINIMUM_PASSWORD_LENGTH: Int = 2
+    object Common {
         const val ID: String = "id"
         const val USER_ID = "userId"
         const val EMAIL: String = "email"
     }
 
     object TemporaryUser {
+        const val MINIMUM_PASSWORD_LENGTH: Int = 2
         // Seconds, 10 minutes
         const val TIME_TO_LIVE: Long = 600
         const val VERIFICATION_CODE_LENGTH: Int = 6

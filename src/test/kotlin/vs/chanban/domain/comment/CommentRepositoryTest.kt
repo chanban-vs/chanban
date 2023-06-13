@@ -16,6 +16,5 @@ class CommentRepositoryTest(@Autowired val commentRepository: CommentRepository)
 
         Assertions.assertEquals(TEST_COMMENT.parentCommentId, savedComment.parentCommentId)
         Assertions.assertEquals(TEST_COMMENT.commentContent, savedComment.commentContent)
-        Assertions.assertEquals(TEST_COMMENT.userIp, savedComment.userIp)
     }
 }

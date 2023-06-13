@@ -8,15 +8,13 @@ class TopicResponseDto(
     val topicTitle: String,
     val topicSubject: ChanbanEnumDto,
     val topicContent: String,
-    val isPolled: Boolean
 ) {
     companion object {
-        fun of(topic: Topic, isPolled: Boolean): TopicResponseDto = TopicResponseDto(
+        fun of(topic: Topic): TopicResponseDto = TopicResponseDto(
             topicId = topic.topicId!!,
             topicTitle = topic.topicTitle,
             topicSubject = ChanbanEnumDto.of(topic.topicSubject),
-            topicContent = topic.topicContent,
-            isPolled = isPolled
+            topicContent = topic.topicContent
         )
     }
 }

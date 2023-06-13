@@ -18,8 +18,8 @@ data class TemporaryUser(
         fun of(
             addTemporaryUserRequestDto: AddTemporaryUserRequestDto
         ): TemporaryUser = TemporaryUser(
-            email = addTemporaryUserRequestDto.email,
-            password = addTemporaryUserRequestDto.password,
+            email = addTemporaryUserRequestDto.email!!,
+            password = addTemporaryUserRequestDto.password!!,
             roles = addTemporaryUserRequestDto.roles,
             verificationCode = addTemporaryUserRequestDto.verificationCode
         )
