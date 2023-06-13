@@ -11,8 +11,8 @@ import vs.chanban.common.Message.User.DUPLICATED_EMAIL
 import vs.chanban.common.Message.User.INVALID_PASSWORD_BY_LENGTH
 import vs.chanban.common.Message.User.WRONG_PASSWORD
 import vs.chanban.common.Message.User.WRONG_VERIFICATION_CODE
+import vs.chanban.common.constant.Constant.TemporaryUser.MINIMUM_PASSWORD_LENGTH
 import vs.chanban.common.constant.Constant.TemporaryUser.VERIFICATION_CODE_LENGTH
-import vs.chanban.common.constant.Constant.User.MINIMUM_PASSWORD_LENGTH
 import vs.chanban.common.exception.ChanbanBizException
 import vs.chanban.domain.mail.MailService
 import vs.chanban.domain.support.util.random.RandomUtil.generateVerificationCode
