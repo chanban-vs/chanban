@@ -24,7 +24,7 @@ class TopicCombineService(
     }
 
     fun getTopic(topicId: Long): TopicResponseDto {
-        val topic: Topic = topicService.getTopicByTopicId(topicId)
+        val topic: Topic = topicService.getTopic(topicId)
 
         return TopicResponseDto.of(topic)
     }
