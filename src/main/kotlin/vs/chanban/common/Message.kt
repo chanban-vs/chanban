@@ -23,6 +23,10 @@ class Message {
     object Poll {
         const val POLL_NOT_FOUND = "Poll not found"
     }
+
+    object Comment {
+        const val COMMENT_NOT_FOUND = "Comment with %s %s not found"
+    }
     object Authentication {
         const val UNAUTHORIZED = "Unauthorized"
         const val INVALID_TOKEN = "Invalid token"
