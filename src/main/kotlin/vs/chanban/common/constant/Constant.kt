@@ -9,6 +9,7 @@ class Constant {
 
     object TemporaryUser {
         const val MINIMUM_PASSWORD_LENGTH: Int = 2
+        const val MAXIMUM_PASSWORD_LENGTH: Int = 100
         // Seconds, 10 minutes
         const val TIME_TO_LIVE: Long = 600
         const val VERIFICATION_CODE_LENGTH: Int = 6
