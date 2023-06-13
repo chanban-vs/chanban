@@ -47,9 +47,13 @@ class UserCombineService(
     // Add user & send email verification code
     @Transactional
     fun addTemporaryUser(addTemporaryUserRequestDto: AddTemporaryUserRequestDto) {
+        // password length check
         if (addTemporaryUserRequestDto.password!!.length < MINIMUM_PASSWORD_LENGTH) {
-            throw ChanbanBizException(HttpStatus.BAD_REQUEST, INVALID_PASSWORD_BY_LENGTH.format(MINIMUM_PASSWORD_LENGTH))
+            throw ChanbanBizException(HttpStatus.BAD_REQUEST, INVALID_PASSWORD_BY_MINIMUM_LENGTH.format(MINIMUM_PASSWORD_LENGTH))
+        } else if (addTemporaryUserRequestDto.password!!.length > MAXIMUM_PASSWORD_LENGTH) {
+            throw ChanbanBizException(HttpStatus.BAD_REQUEST, INVALID_PASSWORD_BY_MAXIMUM_LENGTH.format(MAXIMUM_PASSWORD_LENGTH))
         }
+        // duplicated email check
         if (existsByEmail(addTemporaryUserRequestDto.email!!)) {
             throw ChanbanBizException(HttpStatus.BAD_REQUEST, DUPLICATED_EMAIL.format(addTemporaryUserRequestDto.email))
         }
