@@ -20,7 +20,7 @@ class TopicService(
 
     // Get topic by topic id
     @Transactional(readOnly = true)
-    fun getTopicByTopicId(topicId: Long): Topic {
+    fun getTopic(topicId: Long): Topic {
         return topicRepository.findById(topicId).orElseThrow {
                 ChanbanBizException(HttpStatus.NOT_FOUND, TOPIC_NOT_FOUND.format(topicId))
             }
