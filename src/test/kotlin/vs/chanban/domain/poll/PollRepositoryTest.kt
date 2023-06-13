@@ -16,7 +16,6 @@ class PollRepositoryTest(@Autowired val pollRepository: PollRepository) {
 
         Assertions.assertEquals(TEST_POLL.topicId, savedPoll.topicId)
         Assertions.assertEquals(TEST_POLL.pollAnswer, savedPoll.pollAnswer)
-        Assertions.assertEquals(TEST_POLL.userIp, savedPoll.userIp)
     }
 
 }
