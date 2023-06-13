@@ -21,7 +21,7 @@ class TopicServiceTest {
     private lateinit var topicService: TopicService
 
     @BeforeEach
-    fun setup() {
+    fun setUp() {
         MockitoAnnotations.openMocks(this)
         topicService = TopicService(topicRepository)
     }
