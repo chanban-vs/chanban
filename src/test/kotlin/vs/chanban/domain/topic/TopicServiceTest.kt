@@ -21,7 +21,7 @@ class TopicServiceTest {
     private lateinit var topicService: TopicService
 
     @BeforeEach
-    fun setup() {
+    fun setUp() {
         MockitoAnnotations.openMocks(this)
         topicService = TopicService(topicRepository)
     }
@@ -31,7 +31,7 @@ class TopicServiceTest {
     fun getExistingTopicById() {
         `when`(topicRepository.findById(SPORTS_TOPIC.topicId!!)).thenReturn(Optional.of(SPORTS_TOPIC))
 
-        val topic: Topic = topicService.getTopicByTopicId(SPORTS_TOPIC.topicId!!)
+        val topic: Topic = topicService.getTopic(SPORTS_TOPIC.topicId!!)
 
         Assertions.assertEquals(topic, SPORTS_TOPIC)
     }
@@ -43,7 +43,7 @@ class TopicServiceTest {
         `when`(topicRepository.findById(testTopicId)).thenReturn(Optional.empty())
 
         val exception = Assertions.assertThrows(ChanbanBizException::class.java) {
-            topicService.getTopicByTopicId(testTopicId)
+            topicService.getTopic(testTopicId)
         }
 
         Assertions.assertEquals(HttpStatus.NOT_FOUND, exception.httpStatus)

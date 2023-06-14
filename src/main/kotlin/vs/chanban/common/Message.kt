@@ -17,11 +17,17 @@ class Message {
         const val TEMPORARY_USER_NOT_FOUND = "Temporary user with email %s not found"
         const val WRONG_VERIFICATION_CODE = "Wrong verification code"
         const val DUPLICATED_EMAIL = "Duplicated email %s"
-        const val INVALID_PASSWORD_BY_LENGTH = "Password should be at least %d characters long"
+        const val INVALID_PASSWORD_BY_MINIMUM_LENGTH = "Password should be at least %d characters long"
+        const val INVALID_PASSWORD_BY_MAXIMUM_LENGTH = "Password should not exceed %d characters long"
     }
 
     object Poll {
         const val POLL_NOT_FOUND = "Poll not found"
+    }
+
+    object Comment {
+        const val COMMENT_NOT_FOUND = "Comment with %s %s not found"
+        const val INVALID_PARENT_COMMENT_BY_PARENT_COMMENT = "Parent comment should not have parent comment"
     }
     object Authentication {
         const val UNAUTHORIZED = "Unauthorized"

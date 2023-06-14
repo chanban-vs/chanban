@@ -20,7 +20,7 @@ class TopicService(
 
     // Get topic by topic id
     @Transactional(readOnly = true)
-    fun getTopicByTopicId(topicId: Long): Topic {
+    fun getTopic(topicId: Long): Topic {
         return topicRepository.findById(topicId).orElseThrow {
                 ChanbanBizException(HttpStatus.NOT_FOUND, TOPIC_NOT_FOUND.format(topicId))
             }
@@ -29,6 +29,6 @@ class TopicService(
     // Get topic page by topic subject
     @Transactional(readOnly = true)
     fun getTopicsByTopicSubject(topicSubject: TopicSubject, pageable: Pageable): Page<Topic> {
-        return topicRepository.findAllByTopicSubjectOrderByCreatedAtDesc(topicSubject, pageable)
+        return topicRepository.findTopicsByTopicSubjectOrderByCreatedAtDesc(topicSubject, pageable)
     }
 }

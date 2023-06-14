@@ -17,7 +17,7 @@ class PollCombineService(
 ) {
     // get number of polls
     fun getTotalPoll(topicId: Long): TotalPollDto {
-        val topic: Topic = topicService.getTopicByTopicId(topicId)
+        val topic: Topic = topicService.getTopic(topicId)
         val totalPoll: Long = pollService.getTotalPoll(topic)
 
         return TotalPollDto.of(topicId, totalPoll)
@@ -25,7 +25,7 @@ class PollCombineService(
 
     //get number of each poll answers
     fun getPollResult(topicId: Long): PollResultDto {
-        val topic: Topic = topicService.getTopicByTopicId(topicId)
+        val topic: Topic = topicService.getTopic(topicId)
         val positivePoll: Long = pollService.getPollResult(topic, PollOption.POSITIVE)
         val negativePoll: Long = pollService.getPollResult(topic, PollOption.NEGATIVE)
 
@@ -33,7 +33,7 @@ class PollCombineService(
     }
     @Transactional
     fun addPoll(addPollRequestDto: AddPollRequestDto): PollResponseDto {
-        val topic: Topic = topicService.getTopicByTopicId(addPollRequestDto.topicId!!)
+        val topic: Topic = topicService.getTopic(addPollRequestDto.topicId!!)
         addPollRequestDto.topic = topic
 
         val poll: Poll = pollService.addPoll(Poll.of(addPollRequestDto))
