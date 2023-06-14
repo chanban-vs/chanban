@@ -27,6 +27,7 @@ class Message {
 
     object Comment {
         const val COMMENT_NOT_FOUND = "Comment with %s %s not found"
+        const val INVALID_PARENT_COMMENT_BY_PARENT_COMMENT = "Parent comment should not have parent comment"
     }
     object Authentication {
         const val UNAUTHORIZED = "Unauthorized"
