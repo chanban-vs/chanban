@@ -34,7 +34,7 @@ class TopicCombineService(
         val currentPage = page ?: paginationConfig.defaultPage
         val currentPageSize = pageSize ?: paginationConfig.defaultPageSize
 
-        val topicPage: Page<Topic> = topicService.getTopicsByTopicSubject(topicSubject, PageRequest.of(page!!, pageSize!!))
+        val topicPage: Page<Topic> = topicService.getTopicsByTopicSubject(topicSubject, PageRequest.of(currentPage, currentPageSize))
 
         val topicPageDto: Page<TopicPreviewResponseDto> = topicPage.map { topic ->
             TopicPreviewResponseDto(
