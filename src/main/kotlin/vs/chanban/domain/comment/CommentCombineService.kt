@@ -62,7 +62,7 @@ class CommentCombineService(
         val currentPage = page ?: paginationConfig.defaultPage
         val currentPageSize = pageSize ?: paginationConfig.defaultPageSize
 
-        val commentPage: Page<Comment> = commentService.getComments(topic, PageRequest.of(currentPage, currentPageSize))
+        val commentPage: Page<Comment> = commentService.getCommentPage(topic, PageRequest.of(currentPage, currentPageSize))
 
         return commentPage.map { comment ->
             CommentResponseDto.of(comment)
@@ -75,7 +75,7 @@ class CommentCombineService(
         val currentPage = page ?: paginationConfig.defaultPage
         val currentPageSize = pageSize ?: paginationConfig.defaultPageSize
 
-        val commentPage: Page<Comment> = commentService.getCommentsByPollAnswer(topic, pollOption, PageRequest.of(currentPage, currentPageSize))
+        val commentPage: Page<Comment> = commentService.getCommentPageByPollAnswer(topic, pollOption, PageRequest.of(currentPage, currentPageSize))
 
         return commentPage.map { comment ->
             CommentResponseDto.of(comment)
