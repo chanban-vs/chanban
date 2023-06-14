@@ -26,7 +26,7 @@ class CommentCombineService(
         if (null != addCommentRequestDto.parentCommentId) {
             val parentComment: Comment = commentService.getComment(addCommentRequestDto.parentCommentId)
 
-            // parent comment should not have it's parent comment
+            // parent comment should not have its parent comment
             // comments should not exceed 2 layers
             if (null != parentComment.parentCommentId) {
                 throw ChanbanBizException(HttpStatus.BAD_REQUEST, INVALID_PARENT_COMMENT_BY_PARENT_COMMENT)
