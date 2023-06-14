@@ -29,4 +29,13 @@ class BookmarkService(private val bookmarkRepository: BookmarkRepository) {
     fun getBookmarkPage(user: User, pageable: Pageable): Page<Bookmark> {
         return bookmarkRepository.findBookmarksByCreatedByOrderByCreatedAtDesc(user, pageable)
     }
+
+    @Transactional(readOnly = true)
+    fun isBookmarked(user: User, topic: Topic): Boolean {
+        return bookmarkRepository.existsByCreatedByAndTopicId(user, topic)
+    }
+
+    fun deleteBookmark(bookmarkId: Long) {
+        bookmarkRepository.deleteById(bookmarkId)
+    }
 }
