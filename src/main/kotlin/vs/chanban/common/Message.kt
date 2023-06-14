@@ -30,6 +30,10 @@ class Message {
         const val INVALID_PARENT_COMMENT_BY_PARENT_COMMENT = "Parent comment should not have parent comment"
     }
 
+    object Bookmark {
+        const val BOOKMARK_NOT_FOUND = "Bookmark with %s %s not found"
+    }
+
     object Authentication {
         const val UNAUTHORIZED = "Unauthorized"
         const val INVALID_TOKEN = "Invalid token"
