@@ -1,6 +1,7 @@
 package vs.chanban.domain.bookmark
 
 import jakarta.persistence.*
+import vs.chanban.domain.bookmark.dto.AddBookmarkRequestDto
 import vs.chanban.domain.listener.BaseTimeListener
 import vs.chanban.domain.topic.Topic
 import vs.chanban.domain.user.User
@@ -26,4 +27,11 @@ class Bookmark(
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
     val createdBy: User
-): BaseTimeListener()
+): BaseTimeListener() {
+    companion object {
+        fun of(addBookmarkRequestDto: AddBookmarkRequestDto): Bookmark = Bookmark(
+            topicId = addBookmarkRequestDto.topic!!,
+            createdBy = addBookmarkRequestDto.createdBy!!
+        )
+    }
+}
