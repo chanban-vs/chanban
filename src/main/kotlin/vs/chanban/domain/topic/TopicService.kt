@@ -29,6 +29,6 @@ class TopicService(
     // Get topic page by topic subject
     @Transactional(readOnly = true)
     fun getTopicsByTopicSubject(topicSubject: TopicSubject, pageable: Pageable): Page<Topic> {
-        return topicRepository.findAllByTopicSubjectOrderByCreatedAtDesc(topicSubject, pageable)
+        return topicRepository.findTopicsByTopicSubjectOrderByCreatedAtDesc(topicSubject, pageable)
     }
 }
