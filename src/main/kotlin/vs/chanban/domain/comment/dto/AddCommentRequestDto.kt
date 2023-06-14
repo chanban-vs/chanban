@@ -24,5 +24,4 @@ class AddCommentRequestDto(
     var topic: Topic? = null,
     @field:JsonIgnore
     var parentComment: Comment? = null
-) {
-}
+)
