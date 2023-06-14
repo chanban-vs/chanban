@@ -8,5 +8,5 @@ import vs.chanban.domain.enum.topic.TopicSubject
 
 @Repository
 interface TopicRepository: JpaRepository<Topic, Long> {
-    fun findAllByTopicSubjectOrderByCreatedAtDesc(topicSubject: TopicSubject, pageable: Pageable): Page<Topic>
+    fun findTopicsByTopicSubjectOrderByCreatedAtDesc(topicSubject: TopicSubject, pageable: Pageable): Page<Topic>
 }
