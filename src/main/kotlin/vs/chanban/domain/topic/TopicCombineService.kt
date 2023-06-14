@@ -5,7 +5,6 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import vs.chanban.configuration.PaginationConfig
-import vs.chanban.domain.enum.dto.ChanbanEnumDto
 import vs.chanban.domain.enum.topic.TopicSubject
 import vs.chanban.domain.topic.dto.AddTopicRequestDto
 import vs.chanban.domain.topic.dto.AddTopicResponseDto
@@ -36,15 +35,8 @@ class TopicCombineService(
 
         val topicPage: Page<Topic> = topicService.getTopicsByTopicSubject(topicSubject, PageRequest.of(currentPage, currentPageSize))
 
-        val topicPageDto: Page<TopicPreviewResponseDto> = topicPage.map { topic ->
-            TopicPreviewResponseDto(
-                topicId = topic.topicId,
-                topicTitle = topic.topicTitle,
-                topicSubject = ChanbanEnumDto.of(topic.topicSubject),
-                createdAt = topic.createdAt
-            )
+        return topicPage.map { topic ->
+            TopicPreviewResponseDto.of(topic)
         }
-
-        return topicPageDto
     }
 }
